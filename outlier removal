@@ -1,0 +1,61 @@
+
+ sdx t pandas as pd
+data=pd.read_csv(r"C:\Users\Mrunal\OneDrive\Desktop\5min engineering\iris (1).csv")
+data
+
+data.shape
+
+from matplotlib import pyplot as plt
+plt.boxplot(data.sepal_width)
+
+q1=data.sepal_width.quantile(0.25)
+q1
+
+q3=data.sepal_width.quantile(0.75)
+q3
+
+IQR=q3-q1
+IQR
+
+l=Lower_limit=q1-1.5*IQR
+u=upper_limit=q3+1.5*IQR
+l,u
+
+data[(data.sepal_width < l )| (data.sepal_width > u)]
+
+data_new=data[(data.sepal_width > l ) & (data.sepal_width < u)]
+data_new
+
+plt.boxplot(data_new.sepal_width)
+
+x=data_new.drop(['variety'],axis='columns')
+y=data_new[['variety']]
+x
+
+y
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=8)
+x_train
+
+y_train
+
+x_test
+
+y_test
+
+from sklearn.svm import SVC
+model=SVC()
+model.fit(x_train,y_train)
+model
+
+model.predict(x_test)
+
+model.score(x_test,y_test)
+
+model.predict([[1,2,3,4]])
+
+plt.scatter(data_new.variety,data_new.sepal_length)
+
+plt.scatter(data_new.variety,data_new.sepal_width)
+
