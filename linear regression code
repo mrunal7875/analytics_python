@@ -1,0 +1,21 @@
+import pandas as pd
+data=pd.read_csv(r"C:\Users\Mrunal\OneDrive\Desktop\5min engineering\abcd number.csv")
+data
+
+from matplotlib import pyplot as plt
+plt.scatter(data['distance'],data['price'])
+
+from sklearn.linear_model import LinearRegression
+reg=LinearRegression()
+x=data[['distance']]
+y=data[["price"]]
+reg.fit(x,y)
+
+reg.predict([[30]])
+
+reg.intercept_ #[constant c]
+
+reg.coef_ #[coefficient m]
+
+25*672.22222222-2750. #[y=mx+c] linear regression expression
+
